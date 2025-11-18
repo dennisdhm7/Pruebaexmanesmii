@@ -9,6 +9,7 @@ key.properties
 # Firebase Admin (service account)
 service_account.json
 assets/keys/
+lib/servicios/servicio_openai.dart
 
 # Variables de entorno
 .env
