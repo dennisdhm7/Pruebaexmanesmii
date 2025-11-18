@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
 import 'replies_page.dart';
-import '../../modelo/comentario_model.dart';
-import '../../vistamodelo/comentarios/comentarios_viewmodel.dart';
 
 class PantallaComentarios extends StatefulWidget {
   const PantallaComentarios({super.key});

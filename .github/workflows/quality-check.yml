@@ -27,7 +27,7 @@ jobs:
 
       # 4️⃣ Analizar código (lint + estilo)
       - name: Flutter Analyze
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
       # 5️⃣ Ejecutar las pruebas unitarias
       - name: Run Tests

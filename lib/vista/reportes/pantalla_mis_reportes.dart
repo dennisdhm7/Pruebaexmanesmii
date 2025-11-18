@@ -109,6 +109,8 @@ class _ListaReportes extends StatelessWidget {
             .doc(docId)
             .update({"estado": nuevoEstado});
 
+        if (!context.mounted) return;
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("Estado cambiado a '$nuevoEstado'."),
@@ -116,6 +118,9 @@ class _ListaReportes extends StatelessWidget {
           ),
         );
       } catch (e) {
+        // También verifica aquí
+        if (!context.mounted) return;
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("Error al cambiar estado: $e"),
@@ -214,7 +219,12 @@ class _ListaReportes extends StatelessWidget {
                       "descripcion": descripcionCtrl.text,
                     });
 
+                // Verificar antes de usar ctx (por si la pantalla se cerró)
+                if (!ctx.mounted) return;
                 Navigator.pop(ctx);
+
+                // Verificar antes de usar context
+                if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text("Cambios guardados correctamente."),
@@ -222,6 +232,8 @@ class _ListaReportes extends StatelessWidget {
                   ),
                 );
               } catch (e) {
+                if (!context.mounted) return;
+
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text("Error al guardar: $e"),
@@ -309,7 +321,7 @@ class _ListaReportes extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      color: Colors.black.withValues(alpha: 0.05),
                       blurRadius: 6,
                       offset: const Offset(0, 3),
                     ),
@@ -365,7 +377,7 @@ class _ListaReportes extends StatelessWidget {
                                     vertical: 4,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: colorEstado.withOpacity(0.1),
+                                    color: colorEstado.withValues(alpha: 0.1),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(color: colorEstado),
                                   ),
