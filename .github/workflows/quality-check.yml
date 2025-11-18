@@ -27,7 +27,7 @@ jobs:
 
       # 4️⃣ Linting sin bloquear build
       - name: Run Analyzer
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: flutter analyzer
 
       # 5️⃣ Ejecutar tests y generar reporte HTML
       - name: Run Tests with HTML output
