@@ -11,39 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout del código
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Instalar Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.35.2"
 
-      # 3️⃣ Obtener dependencias
-      - name: Install dependencies
+      - name: Install Dependencies
         run: flutter pub get
 
-      # 4️⃣ Linting sin bloquear build
-      - name: Run Analyzer
+      - name: Run Analyzer (no fatal)
         run: flutter analyze
 
-      # 5️⃣ Ejecutar tests y generar reporte HTML
-      - name: Run Tests with HTML output
+      - name: Run Tests and Generate Report
         run: |
           flutter test --reporter expanded > test_output.txt
-          echo "<html><body><pre>" > report.html
-          cat test_output.txt >> report.html
-          echo "</pre></body></html>" >> report.html
+          mkdir public
+          echo "<html><body><h1>Reporte de Pruebas</h1><pre>" > public/index.html
+          cat test_output.txt >> public/index.html
+          echo "</pre></body></html>" >> public/index.html
 
-      # 6️⃣ Subir HTML como artefacto para GitHub Pages
-      - name: Upload GitHub Pages artifact
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: public
 
-  # 7️⃣ Desplegar en GitHub Pages
   deploy:
     needs: analyze-test-report
     runs-on: ubuntu-latest
