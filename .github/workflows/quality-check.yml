@@ -1,4 +1,4 @@
-name: Quality Check
+name: Quality Check & Pages Report
 
 on:
   push:
@@ -7,28 +7,50 @@ on:
     branches: [main]
 
 jobs:
-  analyze-and-test:
+  analyze-test-report:
     runs-on: ubuntu-latest
 
     steps:
       # 1️⃣ Checkout del código
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # 2️⃣ Instalar Flutter 3.35.2
+      # 2️⃣ Instalar Flutter
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.35.2'
+          flutter-version: "3.35.2"
 
-      # 3️⃣ Descargar dependencias
+      # 3️⃣ Obtener dependencias
       - name: Install dependencies
         run: flutter pub get
 
-      # 4️⃣ Analizar código (lint + estilo)
-      - name: Flutter Analyze
+      # 4️⃣ Linting sin bloquear build
+      - name: Run Analyzer
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
-      # 5️⃣ Ejecutar las pruebas unitarias
-      - name: Run Tests
-        run: flutter test
+      # 5️⃣ Ejecutar tests y generar reporte HTML
+      - name: Run Tests with HTML output
+        run: |
+          flutter test --reporter expanded > test_output.txt
+          echo "<html><body><pre>" > report.html
+          cat test_output.txt >> report.html
+          echo "</pre></body></html>" >> report.html
+
+      # 6️⃣ Subir HTML como artefacto para GitHub Pages
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  # 7️⃣ Desplegar en GitHub Pages
+  deploy:
+    needs: analyze-test-report
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
