@@ -22,22 +22,49 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run Analyzer (no fatal)
-        run: flutter analyze
+      # 📌 Guardamos la salida del analyzer
+      - name: Run Analyzer (save output)
+        run: flutter analyze > analyze_output.txt
 
+      # 📌 Ejecutamos tests y generamos HTML completo
       - name: Run Tests and Generate Report
         run: |
           flutter test --reporter expanded > test_output.txt
-          mkdir public
-          echo "<html><body><h1>Reporte de Pruebas</h1><pre>" > public/index.html
-          cat test_output.txt >> public/index.html
-          echo "</pre></body></html>" >> public/index.html
 
+          mkdir public
+
+          echo "<html><head><meta charset='UTF-8'>
+          <title>Reporte Automático</title>
+          <style>
+            body { font-family: Arial; background:#f6f8fa; padding:40px; }
+            h1 { color:#333; }
+            .box {
+                background:white; padding:20px; border-radius:10px;
+                box-shadow:0 0 10px #0002; margin-bottom:30px;
+            }
+            pre { white-space: pre-wrap; font-size:14px; }
+          </style>
+          </head><body>" > public/index.html
+
+          echo "<h1>📊 Reporte de Análisis (flutter analyze)</h1>" >> public/index.html
+          echo "<div class='box'><pre>" >> public/index.html
+          cat analyze_output.txt >> public/index.html
+          echo "</pre></div>" >> public/index.html
+
+          echo "<h1>🧪 Reporte de Pruebas Unitarias</h1>" >> public/index.html
+          echo "<div class='box'><pre>" >> public/index.html
+          cat test_output.txt >> public/index.html
+          echo "</pre></div>" >> public/index.html
+
+          echo "</body></html>" >> public/index.html
+
+      # 📌 Subir HTML como artefacto para GitHub Pages
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
+  # 📌 Desplegar HTML en Pages
   deploy:
     needs: analyze-test-report
     runs-on: ubuntu-latest
