@@ -28,27 +28,10 @@ jobs:
       - name: Run Tests and Generate Report
         run: |
           flutter test --reporter expanded > test_output.txt
-
           mkdir public
-
-          echo "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><title>Reporte de Pruebas</title>" > public/index.html
-          cat << 'EOF' >> public/index.html
-          <style>
-          body { background: #f5f7fa; font-family: Arial; padding:20px; }
-          h1 { text-align:center; color:#2c3e50; }
-          .card { background:white; padding:20px; margin:0 auto; max-width:900px; border-radius:12px;
-                  box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-          pre { font-size:15px; font-family:monospace; }
-          .footer { margin-top:40px; text-align:center; font-size:13px; color:#777; }
-          </style>
-          </head><body>
-          <h1>📊 Reporte de Pruebas Automatizadas</h1>
-          <div class="card"><pre>
-          EOF
-
-              cat test_output.txt >> public/index.html
-
-              echo "</pre></div><div class='footer'>Generado automáticamente por GitHub Actions • Flutter 🚀</div></body></html>" >> public/index.html
+          echo "<html><body><h1>Reporte de Pruebas</h1><pre>" > public/index.html
+          cat test_output.txt >> public/index.html
+          echo "</pre></body></html>" >> public/index.html
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
