@@ -4,6 +4,7 @@ import 'package:googleapis_auth/auth_io.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:sos_mascotas/modelo/notificacion.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: avoid_print
 
 class NotificacionServicio {
   static const _scopes = ['https://www.googleapis.com/auth/firebase.messaging'];

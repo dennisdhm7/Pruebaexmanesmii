@@ -48,6 +48,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
               ),
               boxShadow: [
                 BoxShadow(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.1),
                   blurRadius: 12,
                   offset: const Offset(3, 3),
@@ -267,6 +268,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
+                // ignore: deprecated_member_use
                 color: color.withOpacity(0.3),
                 blurRadius: 12,
                 offset: const Offset(0, 6),

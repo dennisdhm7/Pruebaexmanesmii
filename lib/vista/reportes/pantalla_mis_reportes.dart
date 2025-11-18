@@ -394,6 +394,7 @@ class _ListaReportes extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
+                              // ignore: unnecessary_brace_in_string_interps
                               "${data["tipo"] ?? "Mascota"} • ${raza}",
                               style: const TextStyle(
                                 color: Colors.grey,

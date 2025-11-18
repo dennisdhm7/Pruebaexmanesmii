@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sos_mascotas/vista/reportes/pantalla_mapa_osm.dart';
 import 'package:sos_mascotas/vistamodelo/reportes/avistamiento_vm.dart';
+// ignore_for_file: use_build_context_synchronously
 
 class PantallaAvistamiento extends StatelessWidget {
   const PantallaAvistamiento({super.key});
@@ -378,7 +379,7 @@ class _FormularioAvistamientoState extends State<_FormularioAvistamiento> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.orange.withOpacity(0.3),
+                          color: Colors.orange.withValues(alpha: 0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 3),
                         ),

@@ -152,6 +152,7 @@ class _ListaReportes extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.05),
                       blurRadius: 6,
                       offset: const Offset(0, 3),
@@ -209,6 +210,7 @@ class _ListaReportes extends StatelessWidget {
                                     vertical: 4,
                                   ),
                                   decoration: BoxDecoration(
+                                    // ignore: deprecated_member_use
                                     color: colorEstado.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(color: colorEstado),

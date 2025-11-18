@@ -11,6 +11,7 @@ import 'package:sos_mascotas/app.dart';
 import 'package:sos_mascotas/servicios/notificacion_servicio.dart';
 import 'package:sos_mascotas/servicios/servicio_tflite.dart';
 import '../../modelo/avistamiento.dart';
+// ignore_for_file: avoid_print
 
 class AvistamientoVM extends ChangeNotifier {
   Avistamiento avistamiento = Avistamiento();

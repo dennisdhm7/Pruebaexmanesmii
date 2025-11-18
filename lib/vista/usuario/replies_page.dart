@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
+// ignore_for_file: use_build_context_synchronously
 
 class RepliesPage extends StatefulWidget {
   final String parentCommentId;
@@ -170,6 +171,7 @@ class _RepliesPageState extends State<RepliesPage> {
                     final texto = data['texto'] ?? '';
                     final autor = data['autor'] ?? 'Anónimo';
                     final ts = data['fecha'] as Timestamp?;
+                    // ignore: prefer_null_aware_operators
                     final fecha = ts != null ? ts.toDate() : null;
                     final mediaUrl = data['mediaUrl'] as String?;
                     final likes = List<String>.from(data['likes'] ?? []);
@@ -284,6 +286,7 @@ class _RepliesPageState extends State<RepliesPage> {
                                     if (mediaUrl != null) {
                                       sb.writeln('\n$mediaUrl');
                                     }
+                                    // ignore: deprecated_member_use
                                     Share.share(sb.toString());
                                   },
                                 ),

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
 import 'replies_page.dart';
+// ignore_for_file: avoid_print
+// ignore_for_file: use_build_context_synchronously
 
 class PantallaComentarios extends StatefulWidget {
   const PantallaComentarios({super.key});
@@ -105,6 +107,7 @@ class _PantallaComentariosState extends State<PantallaComentarios> {
       // eliminar imagen asociada si hay
       if (mediaUrl != null && mediaUrl.isNotEmpty) {
         try {
+          // ignore: await_only_futures
           final ref = await FirebaseStorage.instance.refFromURL(mediaUrl);
           await ref.delete();
         } catch (_) {}
@@ -382,6 +385,7 @@ class _PantallaComentariosState extends State<PantallaComentarios> {
                         ),
                       ),
                       onShare: () async {
+                        // ignore: deprecated_member_use
                         await Share.share(data['texto'] ?? '');
                         _comentariosRef.doc(d.id).update({
                           'shares': FieldValue.increment(1),

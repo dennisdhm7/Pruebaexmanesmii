@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
+// ignore_for_file: avoid_print
 
 class ServicioTFLite {
   static Interpreter? _detectorAnimales;

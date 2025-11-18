@@ -98,6 +98,7 @@ class _PantallaDetalleCompletoState extends State<PantallaDetalleCompleto> {
 
     if (context.mounted) {
       Navigator.push(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
           builder: (_) => PantallaChat(

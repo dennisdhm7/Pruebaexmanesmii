@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,6 +8,7 @@ import 'package:sos_mascotas/vista/reportes/pantalla_mapa_osm.dart';
 import 'package:video_player/video_player.dart';
 import '../../vistamodelo/reportes/reporte_vm.dart';
 import 'video_recorte_page.dart';
+// ignore_for_file: avoid_print
 
 class PantallaReporteMascota extends StatelessWidget {
   const PantallaReporteMascota({super.key});
@@ -907,6 +910,7 @@ Widget _gradientNavButton(String text, {VoidCallback? onTap}) =>
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: const Color(0xFF6366F1).withOpacity(0.3),
               blurRadius: 8,
               offset: const Offset(0, 3),

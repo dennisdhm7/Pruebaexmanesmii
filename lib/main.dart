@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 import 'app.dart';
+// ignore_for_file: avoid_print
 
 // 🔹 Importa el servicio TFLite
 import 'package:sos_mascotas/servicios/servicio_tflite.dart';

@@ -15,6 +15,7 @@ class _PantallaNotificacionesState extends State<PantallaNotificaciones> {
   void initState() {
     super.initState();
     Future.microtask(() async {
+      // ignore: use_build_context_synchronously
       final vm = context.read<NotificacionVM>();
       vm.escucharNotificaciones();
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_trimmer/video_trimmer.dart';
 import '../../vistamodelo/reportes/reporte_vm.dart';
+// ignore_for_file: use_build_context_synchronously
 
 class VideoRecortePage extends StatefulWidget {
   final File videoFile;

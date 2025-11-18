@@ -85,6 +85,7 @@ class PantallaRegistro extends StatelessWidget {
                             ? null
                             : () async {
                                 await vm.buscarYAutocompletarNombre();
+                                if (!context.mounted) return;
                                 if (vm.error != null) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(vm.error!)),

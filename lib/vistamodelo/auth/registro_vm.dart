@@ -120,6 +120,7 @@ class RegistroVM extends ChangeNotifier {
               .update({'token': token});
         }
       } catch (e) {
+        // ignore: avoid_print
         print("Error guardando token FCM: $e");
       }
       // 5) Enviar verificación

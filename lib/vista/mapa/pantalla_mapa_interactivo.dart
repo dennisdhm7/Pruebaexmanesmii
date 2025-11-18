@@ -97,6 +97,7 @@ class _PantallaMapaInteractivoState extends State<PantallaMapaInteractivo> {
 
     if (context.mounted) {
       Navigator.push(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
           builder: (_) => PantallaChat(
@@ -156,6 +157,7 @@ class _PantallaMapaInteractivoState extends State<PantallaMapaInteractivo> {
                           final lat = punto["latitud"];
                           final lng = punto["longitud"];
                           if (lat == null || lng == null)
+                            // ignore: curly_braces_in_flow_control_structures
                             return const Marker(
                               point: LatLng(0, 0),
                               child: SizedBox(),
@@ -229,6 +231,7 @@ class _PantallaMapaInteractivoState extends State<PantallaMapaInteractivo> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
+              // ignore: deprecated_member_use
               color: Colors.black.withOpacity(0.1),
               blurRadius: 12,
               offset: const Offset(0, 4),

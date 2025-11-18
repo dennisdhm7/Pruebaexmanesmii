@@ -16,11 +16,9 @@ class ImageBackground extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset(
-            assetPath,
-            fit: BoxFit.cover,
-          ),
+          Image.asset(assetPath, fit: BoxFit.cover),
           // Overlay para bajar brillo
+          // ignore: deprecated_member_use
           Container(color: Colors.black.withOpacity(opacity)),
         ],
       ),
